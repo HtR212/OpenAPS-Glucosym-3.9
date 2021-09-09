@@ -53,23 +53,23 @@ This section should list any major frameworks that you built your project using.
 
 ### Prerequisites
 Before the installation process, the following things need to be installed:
-* python3.5   
-* pip (``` $ wget https://bootstrap.pypa.io/pip/3.5/get-pip.py ```)   
-* virtualenv@15.0.1 (``` $ pip install virtualenv==15.0.1 ```)  
+* python3.9     
+* pip (``` $ wget https://bootstrap.pypa.io/get-pip.py ```)   
+* virtualenv@20.7.2 (``` $ pip install virtualenv==20.7.2 ```)  
 * git   
 
 ### Installation
 
 1. **Clone the repo**
   ```sh
-  $ git clone https://github.com/HtR212/OpenAPS-Glucosym-3.git
+  $ git clone https://github.com/HtR212/OpenAPS-Glucosym-3.9.git
   ```
 
 2. **Virtual environment**   
-  * A virtual environment need to be set up inside ./OpenAPS-Glucosym/:  
+  * A virtual environment need to be set up inside ./OpenAPS-Glucosym-3.9/:  
   ```sh
-  $ cd ./OpenAPS-Glucosym-3  
-  $ virtualenv --no-site-packages --python=/usr/bin/python3 ./venv/ #set up a virtual environment that uses python3.5  
+  $ cd ./OpenAPS-Glucosym-3.9   
+  $ virtualenv --no-site-packages --python=/usr/bin/python3.9 ./venv/ #set up a virtual environment that uses python3.9   
   ```
   * To enter the virtual environment, use the following command:
   ```sh
@@ -83,8 +83,8 @@ Before the installation process, the following things need to be installed:
   
 3. **Run the auto-install script**  
   ```sh
-  (venv)$ chmod u+x ./closedloop3.5-setup.sh
-  (venv)$ ./closedloop3.5-setup.sh
+  (venv)$ chmod u+x ./closedloop3.9-setup.sh
+  (venv)$ ./closedloop3.9-setup.sh
   ```
   
 4. **Debug files under /bin**   
@@ -98,10 +98,10 @@ Before the installation process, the following things need to be installed:
 
 First, open a terminal window and run the following commands:  
 ```sh
-(venv)$ cd ./OpenAPS-Glucosym-3
-(venv)$ source ./venv/bin/activate
-(venv)$ cd ./glucosym
-(venv)$ npm start
+(venv)$ cd ./OpenAPS-Glucosym-3.9   
+(venv)$ source ./venv/bin/activate   
+(venv)$ cd ./glucosym   
+(venv)$ npm start   
 ```
 Then, open a browser and navigate to http://localhost:3000.
 
@@ -109,9 +109,9 @@ Then, open a browser and navigate to http://localhost:3000.
 
 Open another terminal window and initialize OpenAPS:
 ```sh
-(venv)$ cd ./OpenAPS-Glucosym-3  
-(venv)$ source ./venv/bin/activate
-(venv)$ cd ./openaps3.5   
+(venv)$ cd ./OpenAPS-Glucosym-3.9     
+(venv)$ source ./venv/bin/activate   
+(venv)$ cd ./openaps3.9     
 (venv)$ python initialize.py [initial bg]  
 ```
 Next, change the initial bg of the selected patient on the glucosym server and run the closed loop simulation:
