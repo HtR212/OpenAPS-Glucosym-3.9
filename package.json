@@ -1,0 +1,29 @@
+{
+  "name": "test3.9",
+  "version": "1.0.0",
+  "description": "OpenAPS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "OpenAPS"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json": "^11.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HtR212/OpenAPS-Glucosym.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HtR212/OpenAPS-Glucosym/issues"
+  },
+  "homepage": "https://github.com/HtR212/OpenAPS-Glucosym#readme",
+  "directories": {
+    "test": "test"
+  }
+}
