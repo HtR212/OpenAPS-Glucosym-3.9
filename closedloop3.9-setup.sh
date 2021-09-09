@@ -25,7 +25,7 @@ fi
 #mv ./dependencies/setuptools-* ./${venv_name}/lib/python${python_version}/site-packages
 #rm -r ./dependencies
 
-pip install numpy==1.21.2 watchdog==2.1.5 nodeenv1.6.0 openaps==0.1.5 openaps-contrib==0.0.15 matplotlib==3.4.3
+pip install numpy==1.21.2 watchdog==2.1.5 nodeenv==1.6.0 openaps==0.1.5 openaps-contrib==0.0.15 matplotlib==3.4.3
 
 apt-get download python-dev=2.7.12-1~16.04 python-software-properties=0.96.20.10
 
