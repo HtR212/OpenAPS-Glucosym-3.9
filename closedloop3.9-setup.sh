@@ -25,7 +25,7 @@ fi
 #mv ./dependencies/setuptools-* ./${venv_name}/lib/python${python_version}/site-packages
 #rm -r ./dependencies
 
-pip install numpy==1.21.2 watchdog==2.1.5 nodeenv==1.6.0 openaps==0.1.5 openaps-contrib==0.0.15 matplotlib==3.4.3
+pip install numpy==1.21.2 watchdog==2.1.5 nodeenv==1.6.0 openaps==0.1.5 openaps-contrib==0.0.15 matplotlib==3.4.3 sed==0.3.1
 
 apt-get download python-dev=2.7.12-1~16.04 python-software-properties=0.96.20.10
 
@@ -90,8 +90,10 @@ cp -f ./substitution\ files/reports/invoke.py ./${venv_name}/lib/python${python_
 cp -f ./substitution\ files/reports/show.py ./${venv_name}/lib/python${python_version}/site-packages/openaps/reports/
 cp -f ./substitution\ files/alias/__init__.py ./${venv_name}/lib/python${python_version}/site-packages/openaps/alias/
 cp -f ./substitution\ files/reports/reporters/__init__.py ./${venv_name}/lib/python${python_version}/site-packages/openaps/reports/reporters/
-#cp -f ./substitution\ files/openaps-report ./${venv_name}/bin/
-#cp -f ./substitution\ files/openaps ./${venv_name}/bin/
+sed -i "1s|.*|#!${PWD}/${venv_name}/bin/python|" ./substitution\ files/openaps
+sed -i "1s|.*|#!${PWD}/${venv_name}/bin/python|" ./substitution\ files/openaps-report
+cp -f ./substitution\ files/openaps-report ./${venv_name}/bin/
+cp -f ./substitution\ files/openaps ./${venv_name}/bin/
 # End
 
 cd ./openaps${python_version}
