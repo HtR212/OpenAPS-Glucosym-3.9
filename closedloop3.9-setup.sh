@@ -27,16 +27,16 @@ fi
 
 pip install numpy==1.21.2 watchdog==2.1.5 nodeenv==1.6.0 openaps==0.1.5 openaps-contrib==0.0.15 matplotlib==3.4.3 sed==0.3.1
 
-apt-get download python-dev=2.7.12-1~16.04 python-software-properties=0.96.20.10
+apt-get download python3.9-dev=3.9.10-1+focal1 python3-software-properties=0.99.9.8
 
-dpkg -x ./python-dev* ./dev
-dpkg -x ./python-software-properties* ./software-properties
+dpkg -x ./python3.9-dev* ./dev
+dpkg -x ./python3-software-properties* ./software-properties
 
 mv ./dev ./${venv_name}/lib/python${python_version}/site-packages
 mv ./software-properties ./${venv_name}/lib/python${python_version}/site-packages 
 
-rm ./python-dev*
-rm ./python-software-properties*
+rm ./python3.9-dev*
+rm ./python3-software-properties*
 
 nodeenv -p --node=12.22.1
 npm init -g
