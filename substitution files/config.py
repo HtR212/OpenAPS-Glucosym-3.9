@@ -16,7 +16,7 @@ class Config (SafeConfigParser):
   def set_ini_path (self, ini_path='openaps.ini'):
     self.ini_name = ini_path
   def save (self):
-    with open(self.ini_name, 'wb') as configfile:
+    with open(self.ini_name, 'w') as configfile:
       self.write(configfile)
   def fmt(self):
       """Write an .ini-format representation of the configuration state."""
