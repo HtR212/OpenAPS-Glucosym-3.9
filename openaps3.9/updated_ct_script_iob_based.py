@@ -162,7 +162,10 @@ for _ in range(iteration_num):
     
   
   #current_timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%S-07:00') ## Original
-  current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S-04:00') ## After time change
+  #current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S-04:00') ## After time change
+  tz = int(-(time.altzone if (time.daylight and time.localtime().tm_isdst > 0) else time.timezone)/3600)
+  current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S') ## After time change
+  current_timestamp = current_timestamp + ("-" if tz<0 else "+") + str(abs(tz)).zfill(2) + ":00"
 
   with open('monitor/clock.json','w') as update_clock:
     json.dump(current_timestamp, update_clock)
