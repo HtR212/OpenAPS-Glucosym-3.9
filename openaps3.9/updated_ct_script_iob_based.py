@@ -97,7 +97,7 @@ fault_file = output_dir + '/fault_times.txt'
 
 directory = "data_new"
 
-patient_list = [3,5,6,7,8,10,13,14,15,17,18,19,20,21,22,24,25,26,28,29,31,32,37,38]
+patient_list = [3,5,6,7,8,10,13,14,15,17,18,19,20,21,22,24,25,26,28,29,31,32,37,38,39,41,43,44,46,47,48,51,54,55,56,57,58,59,60,63,64,65,66,67,68,69,71,72,74,77,78,79,80,86,88,89,90,91,93,94,95,96,97,98,100,102,105,111,114,115,116,117,118,120,121,122,123,126,128,129,130,132,133,134,135,137,138,141,142,143,144,145,147,148,149,150,153,154,155,157,158,159,160,162,163,164,165,166,167,168,169,171]
 
 for filename in os.listdir(directory):
   if int(filename.split(".")[0][12:]) not in patient_list:       # change this
@@ -107,7 +107,7 @@ for filename in os.listdir(directory):
   with open("settings/insulin_sensitivities.json") as read_sensitivities:
     loaded_sensitivities = json.load(read_sensitivities) # read whole pump_history.json
     read_sensitivities.close()
-  loaded_sensitivities["sensitivities"][0]["sensitivity"] = sens[int(filename.split(".")[0][12:])]
+  loaded_sensitivities["sensitivities"][0]["sensitivity"] = sens[int(filename.split(".")[0][12:])-1]
 	
   with open("settings/insulin_sensitivities.json", "w") as write_sensitivities:
     json.dump(loaded_sensitivities, write_sensitivities, indent=4)
@@ -190,12 +190,12 @@ for filename in os.listdir(directory):
 
     fault_prob = random.randint(1,100)
     
-    # with open("../glucosym/closed_loop_algorithm_samples/algo_input.json") as update_algo_input:
-    #   loaded_algo_input = json.load(update_algo_input)
-    #   update_algo_input.close()
+    with open("../glucosym/closed_loop_algorithm_samples/algo_input.json") as update_algo_input:
+      loaded_algo_input = json.load(update_algo_input)
+      update_algo_input.close()
       
-    # loaded_algo_input_copy = loaded_algo_input.copy()
-    # loaded_algo_input_copy['index'] = _
+    loaded_algo_input_copy = loaded_algo_input.copy()
+    loaded_algo_input_copy['index'] = _
     
     #print(loaded_algo_input_copy)
     
@@ -324,7 +324,7 @@ for filename in os.listdir(directory):
     # bb_controller_se += (original_basal_data[_]-patient_basal_data[_])**2
     # bb_controller_total_se += (original_basal_data[_]-patient_basal_data[_])**2
 
-    loaded_suggested_data["rate"] = patient_basal_data[_]*12
+    # loaded_suggested_data["rate"] = patient_basal_data[_]*12
     
   #################################### Context table check #################################################################
 
@@ -874,3 +874,4 @@ for filename in os.listdir(directory):
   #   csv_writer = csv.writer(mse_result)
   #   csv_writer.writerow([-1, total_mse, bb_controller_total_mse, "U"])
   #   mse_result.close()
+
