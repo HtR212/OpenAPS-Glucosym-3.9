@@ -1,0 +1,1 @@
+http://github.com/openaps/dexcom_reader/tarball/master#egg=dexcom_reader-master

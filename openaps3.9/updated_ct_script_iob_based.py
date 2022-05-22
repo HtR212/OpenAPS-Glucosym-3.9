@@ -97,7 +97,7 @@ fault_file = output_dir + '/fault_times.txt'
 
 directory = "data_new"
 
-patient_list = [5,6,7,8,10,13,14,15,17,18,19,20,21,22,24,25,26,28,29,31,32,37,38]
+patient_list = [3,5,6,7,8,10,13,14,15,17,18,19,20,21,22,24,25,26,28,29,31,32,37,38]
 
 for filename in os.listdir(directory):
   if int(filename.split(".")[0][12:]) not in patient_list:       # change this

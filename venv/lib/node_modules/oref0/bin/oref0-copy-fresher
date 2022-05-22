@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+source $(dirname $0)/oref0-bash-common-functions.sh || (echo "ERROR: Failed to run oref0-bash-common-functions.sh. Is oref0 correctly installed?"; exit 1)
+
+WITHIN=0
+
+usage "$@" <<EOF
+Usage: $self [--since <seconds|0>] <file> [<file>...]
+cat files mentioned.
+If --since seconds is specified, the file will only be cat'd if the files last
+modification occurred within <seconds>.
+Default <seconds> is 0, it will cat all files.
+EOF
+
+case $1 in
+  --since)
+    shift
+    WITHIN=$1
+    shift
+  ;;
+esac
+
+
+for file in $* ; do
+  if [[ -f $file && ($WITHIN -eq 0 || $(expr $(epochtime_now) - $(date +%s -r $file)) -lt $WITHIN) ]] ; then
+    cat $file
+  fi
+done
+
+
+ # 2783  test $(expr $(epochtime_now) - $(date +%s  -r openaps.ini )) -gt 1000  && echo "OK" || echo "NOT"
+ # 2784  test $(expr $(epochtime_now) - $(date +%s  -r openaps.ini )) -gt 1000000  && echo "OK" || echo "NOT"
+ # 2785  history | tail -n 3 > blah
+

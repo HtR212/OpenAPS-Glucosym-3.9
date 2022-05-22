@@ -1,0 +1,6 @@
+[openaps.importable]
+aliases = openaps.alias
+devices = openaps.devices
+reports = openaps.reports
+vendors = openaps.vendors.plugins
+

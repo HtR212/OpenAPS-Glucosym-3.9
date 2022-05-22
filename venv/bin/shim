@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+export NODE_PATH='/home/student/Frank/OpenAPS-Glucosym-3.9/venv/lib/node_modules'
+export NPM_CONFIG_PREFIX='/home/student/Frank/OpenAPS-Glucosym-3.9/venv'
+export npm_config_prefix='/home/student/Frank/OpenAPS-Glucosym-3.9/venv'
+exec '/home/student/Frank/OpenAPS-Glucosym-3.9/venv/bin/node' "$@"
