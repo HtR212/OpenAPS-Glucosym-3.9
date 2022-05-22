@@ -797,20 +797,20 @@ for filename in os.listdir(directory):
 
             #################### Uppdate Pumphistory ############################
             
-          with open("monitor/pumphistory.json") as read_pump_history:
-            loaded_pump_history = json.load(read_pump_history)
-            pump_history_0 = loaded_pump_history[0].copy()
-            pump_history_1 = loaded_pump_history[1].copy()
-            pump_history_0['duration (min)'] = loaded_suggested_data['duration'] #if "duration" in loaded_suggested_data else 0
-            pump_history_1['rate'] = loaded_suggested_data['rate'] #if "rate" in loaded_suggested_data else 0
-            pump_history_0['timestamp'] = current_timestamp
-            pump_history_1['timestamp'] = current_timestamp
-            loaded_pump_history.insert(0, pump_history_1)
-            loaded_pump_history.insert(0, pump_history_0)
-            read_pump_history.close()
-        
-          with open("monitor/pumphistory.json", "w") as write_pump_history:
-            json.dump(loaded_pump_history, write_pump_history, indent=4)
+            with open("monitor/pumphistory.json") as read_pump_history:
+              loaded_pump_history = json.load(read_pump_history)
+              pump_history_0 = loaded_pump_history[0].copy()
+              pump_history_1 = loaded_pump_history[1].copy()
+              pump_history_0['duration (min)'] = loaded_suggested_data['duration'] #if "duration" in loaded_suggested_data else 0
+              pump_history_1['rate'] = loaded_suggested_data['rate'] #if "rate" in loaded_suggested_data else 0
+              pump_history_0['timestamp'] = current_timestamp
+              pump_history_1['timestamp'] = current_timestamp
+              loaded_pump_history.insert(0, pump_history_1)
+              loaded_pump_history.insert(0, pump_history_0)
+              read_pump_history.close()
+          
+            with open("monitor/pumphistory.json", "w") as write_pump_history:
+              json.dump(loaded_pump_history, write_pump_history, indent=4)
       
 
   #    else:
