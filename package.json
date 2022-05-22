@@ -1,0 +1,19 @@
+{
+  "name": "openaps-glucosym-3.9",
+  "version": "1.0.0",
+  "description": "<!-- TABLE OF CONTENTS --> <details open=\"open\">   <summary>Table of Contents</summary>   <ol>     <li>       <a href=\"#about-the-project\">About The Project</a>       <ul>         <li><a href=\"#built-with\">Built With</a></li>       </ul>     </li>     <li>       <a href=\"#getting-started\">Getting Started</a>       <ul>         <li><a href=\"#prerequisites\">Prerequisites</a></li>         <li><a href=\"#installation\">Installation</a></li>       </ul>     </li>     <!--     <li><a href=\"#usage\">Usage</a></li>     <li><a href=\"#roadmap\">Roadmap</a></li>     <li><a href=\"#contributing\">Contributing</a></li>     <li><a href=\"#license\">License</a></li>     <li><a href=\"#contact\">Contact</a></li>     -->     <li><a href=\"#simulation-workflow\">Simulation Workflow</a></li>       <ul>         <li><a href=\"#setting-up-glucosym\">Setting up Glucosym</a></li>         <li><a href=\"#initializing-and-running-openaps-closed-loop\">Initializing and running OpenAPS closed loop</a></li>         <li><a href=\"#collecting-output-data\">Collecting output data</a></li>       </ul>     <li><a href=\"#acknowledgements\">Acknowledgements</a></li>   </ol> </details>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HtR212/OpenAPS-Glucosym-3.9.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HtR212/OpenAPS-Glucosym-3.9/issues"
+  },
+  "homepage": "https://github.com/HtR212/OpenAPS-Glucosym-3.9#readme"
+}

@@ -1,3 +1,4 @@
 {
-  "max_iob": 2
+  "max_iob": 2,
+  "wide_bg_target_range" : true
 }
