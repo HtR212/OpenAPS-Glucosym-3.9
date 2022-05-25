@@ -97,7 +97,7 @@ fault_file = output_dir + '/fault_times.txt'
 
 directory = "data_new"
 
-patient_list = [3,5,6,7,8,10,13,14,15,17,18,19,20,21,22,24,25,26,28,29,31,32,37,38,39,41,43,44,46,47,48,51,54,55,56,57,58,59,60,63,64,65,66,67,68,69,71,72,74,77,78,79,80,86,88,89,90,91,93,94,95,96,97,98,100,102,105,111,114,115,116,117,118,120,121,122,123,126,128,129,130,132,133,134,135,137,138,141,142,143,144,145,147,148,149,150,153,154,155,157,158,159,160,162,163,164,165,166,167,168,169,171]
+patient_list = [148,149,150,153,154,155,157,158,159,160]
 
 for filename in os.listdir(directory):
   if int(filename.split(".")[0][12:]) not in patient_list:       # change this
@@ -707,7 +707,7 @@ for filename in os.listdir(directory):
 
     prev_rate = loaded_suggested_data["rate"] #if "rate" in loaded_suggested_data else 0
 
-    list_suggested_data_to_dump.insert(0,loaded_suggested_data)
+    # list_suggested_data_to_dump.insert(0,loaded_suggested_data)
     #read the output in suggested.json and append it to list_suggested_data_to_dump list. Basically we are trying to get all the suggest      ed data and dump make a list lf that and then dump it to all_suggested.json file    
   #  with open("enact/suggested.json") as read_suggested:
   #    loaded_suggested_data = json.load(read_suggested)
@@ -797,20 +797,20 @@ for filename in os.listdir(directory):
 
             #################### Uppdate Pumphistory ############################
             
-          with open("monitor/pumphistory.json") as read_pump_history:
-            loaded_pump_history = json.load(read_pump_history)
-            pump_history_0 = loaded_pump_history[0].copy()
-            pump_history_1 = loaded_pump_history[1].copy()
-            pump_history_0['duration (min)'] = loaded_suggested_data['duration'] #if "duration" in loaded_suggested_data else 0
-            pump_history_1['rate'] = loaded_suggested_data['rate'] #if "rate" in loaded_suggested_data else 0
-            pump_history_0['timestamp'] = current_timestamp
-            pump_history_1['timestamp'] = current_timestamp
-            loaded_pump_history.insert(0, pump_history_1)
-            loaded_pump_history.insert(0, pump_history_0)
-            read_pump_history.close()
-        
-          with open("monitor/pumphistory.json", "w") as write_pump_history:
-            json.dump(loaded_pump_history, write_pump_history, indent=4)
+            with open("monitor/pumphistory.json") as read_pump_history:
+              loaded_pump_history = json.load(read_pump_history)
+              pump_history_0 = loaded_pump_history[0].copy()
+              pump_history_1 = loaded_pump_history[1].copy()
+              pump_history_0['duration (min)'] = loaded_suggested_data['duration'] #if "duration" in loaded_suggested_data else 0
+              pump_history_1['rate'] = loaded_suggested_data['rate'] #if "rate" in loaded_suggested_data else 0
+              pump_history_0['timestamp'] = current_timestamp
+              pump_history_1['timestamp'] = current_timestamp
+              loaded_pump_history.insert(0, pump_history_1)
+              loaded_pump_history.insert(0, pump_history_0)
+              read_pump_history.close()
+          
+            with open("monitor/pumphistory.json", "w") as write_pump_history:
+              json.dump(loaded_pump_history, write_pump_history, indent=4)
       
 
   #    else:
@@ -831,9 +831,9 @@ for filename in os.listdir(directory):
     
     #print(suggested_data_to_dump)
     #write the list_suggested_data_to_dump into all_suggested.json file
-    with open("enact/all_suggested.json", "w") as dump_suggested:
-      json.dump(list_suggested_data_to_dump, dump_suggested, indent=4)
-      dump_suggested.close()  
+    #with open("enact/all_suggested.json", "w") as dump_suggested:
+    #  json.dump(list_suggested_data_to_dump, dump_suggested, indent=4)
+    #  dump_suggested.close()  
 
     #if 'rate' in loaded_suggested_data.keys():
           #update the insulin parameter input of glucosym. This insulin parameters is received from openaps(suggested.json)
