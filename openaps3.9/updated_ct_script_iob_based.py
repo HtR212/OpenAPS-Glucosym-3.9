@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@HtR212 
+UVA-DSA
+/
+OpenAPS-Glucosym-3.9
+Public
+forked from HtR212/OpenAPS-Glucosym-3.9
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+OpenAPS-Glucosym-3.9/openaps3.9/updated_ct_script_iob_based (copy).py /
+@HtR212
+HtR212 for simulation with DCLP
+Latest commit d96c818 on May 22
+ History
+ 1 contributor
+Executable File  731 lines (530 sloc)  30.5 KB
+
 import sys
 import json
 import datetime
@@ -68,101 +98,6 @@ fault_file = output_dir + '/fault_times.txt'
 ##faultfile = open(fault_file, 'w')
 ##faultfile.close()
 
-<<<<<<< HEAD
-=======
-directory = "data_new"
-
-patient_list = [148,149,150,153,154,155,157,158,159,160]
-
-for filename in os.listdir(directory):
-  if int(filename.split(".")[0][12:]) not in patient_list:       # change this
-    continue
-  folder = filename.split(".")[0].split("_")[1]
-  call(["mkdir", f"comparison_result/{folder}"])
-  with open("settings/insulin_sensitivities.json") as read_sensitivities:
-    loaded_sensitivities = json.load(read_sensitivities) # read whole pump_history.json
-    read_sensitivities.close()
-  loaded_sensitivities["sensitivities"][0]["sensitivity"] = sens[int(filename.split(".")[0][12:])-1]
-	
-  with open("settings/insulin_sensitivities.json", "w") as write_sensitivities:
-    json.dump(loaded_sensitivities, write_sensitivities, indent=4)
-
-  # se = 0
-  # total_se = 0
-  num_data = 0
-  # total_num_data = 0
-  # bb_controller_se = 0
-  # bb_controller_total_se = 0
-
-  # truncate the output file
-  # with open(f'mse_result/mse_{filename.split(".")[0]}.csv','w') as mse_result:
-  #   csv_writer = csv.writer(mse_result)
-  #   csv_writer.writerow(["Day", "MSE_OpenAPS", "MSE_BasalBolus", "Unit"])
-  #   mse_result.close()
-
-  patient_bg_data = []
-  patient_basal_data = []
-  original_basal_data = []
-  day = []
-  current_day = 0
-  # filename = 'data_patient3_day2.csv'
-  with open(f'{directory}/{filename}') as patient_data:
-    csv_reader = csv.reader(patient_data, delimiter=',')
-    row_count = 0
-    for row in csv_reader:
-      if row_count != 0:
-        patient_bg_data.append(float(row[2]))
-        patient_basal_data.append(float(row[3]))
-        original_basal_data.append(float(row[6]))
-        day.append(int(row[0]))
-      row_count += 1 
-    patient_data.close()
-    row_count -= 1
-
-  # with open(f'{filename}','w') as comparison:
-  #   csv_writer = csv.writer(comparison)
-  #   csv_writer.writerow(["OpenAPS", "DCLP3", "CGM_glucose"])
-  #   comparison.close()
-
-  # for _ in range(iteration_num):
-  for _ in range(row_count):
-
-    if day[_] == 0:
-      continue
-    # if day[_] < 2:      # change this
-    #   continue
-    # if day[_] > 2:      # change this
-    #   break
-    if day[_] > 30:
-      break
-
-    if day[_] != current_day:
-      # if day[_] != 1:               
-        # mse = se / num_data
-        # mse_bb = bb_controller_se / num_data
-        # with open(f'mse_result/mse_{filename.split(".")[0]}.csv','a') as mse_result:
-        #   csv_writer = csv.writer(mse_result)
-        #   csv_writer.writerow([current_day, mse, mse_bb, "U"])
-        #   mse_result.close()
-        # se = 0
-      with open(f'comparison_result/{folder}/comparison_{filename.split(".")[0]}_day_{day[_]}.csv','w') as comparison_result:
-        csv_writer = csv.writer(comparison_result)
-        csv_writer.writerow(["BG", "OpenAPS", "Basal_Bolus", "DCLP3"])
-        comparison_result.close()
-      num_data = 0
-      call(["python", "initialize.py", f"{patient_bg_data[_]}"])
-
-    current_day = day[_]
-
-    glucose_refresh = True 
-    rate_refresh = True # update the glucose reading and rate output command
-
-    if _ != 0:
-      print("\n")
-    else:
-      print("")
-    print("faultIteration: ", faultIteration)
->>>>>>> b7fe632ea6efa47cfc1210b332e29d34e32e4582
 
 for _ in range(iteration_num):
 
@@ -172,7 +107,7 @@ for _ in range(iteration_num):
   if _ != 0:
     print("\n")
   else:
-    print("")
+    print("");
   print("faultIteration: ", faultIteration)
 
   fault_prob = random.randint(1,100)
@@ -258,10 +193,9 @@ for _ in range(iteration_num):
   
   #current_timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%S-07:00') ## Original
   #current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S-04:00') ## After time change
-  
-  tz = int(-(time.altzone if (time.daylight and time.localtime().tm_isdst > 0) else time.timezone)/3600) ## Time zone offset
-  current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S') ## Local time
-  current_timestamp = current_timestamp + ("-" if tz<0 else "+") + str(abs(tz)).zfill(2) + ":00" ## Time zone appended
+  tz = int(-(time.altzone if (time.daylight and time.localtime().tm_isdst > 0) else time.timezone)/3600)
+  current_timestamp = datetime.datetime.fromtimestamp(time.time()+0*60*60+(_)*5*60).strftime('%Y-%m-%dT%H:%M:%S') ## After time change
+  current_timestamp = current_timestamp + ("-" if tz<0 else "+") + str(abs(tz)).zfill(2) + ":00"
 
   with open('monitor/clock.json','w') as update_clock:
     json.dump(current_timestamp, update_clock)
@@ -694,7 +628,7 @@ for _ in range(iteration_num):
         loaded_pump_history.insert(0, pump_history_1) # insert second element back to whatever we loaded from pumphistory
         loaded_pump_history.insert(0, pump_history_0) #insert first element back to whatever we loaded from pumphistory
                       
-        read_pump_history.close()
+        read_pump_history.close();
     
       with open("monitor/pumphistory.json", "w") as write_pump_history:
         json.dump(loaded_pump_history, write_pump_history, indent=4)
@@ -727,78 +661,8 @@ for _ in range(iteration_num):
           loaded_algo_input_copy["events"]['basal'][0]['length'] = loaded_suggested_data['duration'] #if "duration" in loaded_suggested_data else 0
           loaded_algo_input_copy["events"]['basal'][0]['start'] = _*5
         
-<<<<<<< HEAD
         ##################### Uppdate Pupmphistory ####################################
           
-=======
-            
-    ########################################### End of 8th row ##############################################################
-    
-      # if glucose > bg_target:
-      #   print("\nGlucose is above target")
-      # elif glucose < bg_target:
-      #   print("\nGlucose is below target")
-      # elif glucose == bg_target:
-      #   print("\nGlucose equals to target")
-
-      # del_bg = glucose - prev_glucose
-      # if del_bg < 0:
-      #   print("\nglucose is falling")
-      # elif del_bg > 0:
-      #   print("\nglucose is rising")
-      # elif del_bg == 0:
-      #   print("\nglucose is stable")
-    
-      # del_iob = iob - prev_iob
-      # if del_iob < 0:
-      #   print("\niob is falling")
-      # elif del_iob > 0:
-      #   print("\niob is rising")
-      # elif del_iob == 0:
-      #   print("\niob is stable")
-
-
-      # if del_rate > 0:
-      #   print("\ninsulin is increased")
-      # elif del_rate < 0:
-      #   print("\ninsulin is decreased")
-      # elif del_rate == 0:
-      #   print("\nNo change in insulin")
-
-      # print("prev_iob: ", prev_iob)
-      # print("iob: ", iob)
-      # print("prev_glucose: ", prev_glucose)
-      # print("loaded_glucose", glucose)
-      # print("bg", bg)
-    
-    if glucose >= 39:        
-      prev_iob = iob
-    
-    prev_glucose = glucose
-  #########################=============inject fault here==============#####################
-    ## Fault_injection : Injection of fault in Controller output ######################
-    #rate:HOOK#
-    #loaded_suggested_data["rate"] = random.randint(0,5) # Activate for faulty system. For non_faulty system, comment this out 
-
-    if rate_refresh != True:
-      loaded_suggested_data["rate"] = prev_rate #only update rate output when rate_refresh equals to True
-
-    prev_rate = loaded_suggested_data["rate"] #if "rate" in loaded_suggested_data else 0
-
-    # list_suggested_data_to_dump.insert(0,loaded_suggested_data)
-    #read the output in suggested.json and append it to list_suggested_data_to_dump list. Basically we are trying to get all the suggest      ed data and dump make a list lf that and then dump it to all_suggested.json file    
-  #  with open("enact/suggested.json") as read_suggested:
-  #    loaded_suggested_data = json.load(read_suggested)
-  #    list_suggested_data_to_dump.insert(0,loaded_suggested_data)
-  #    #list_suggested_data_to_dump.append(loaded_suggested_data)
-  #    read_suggested.close()
-    
-    
-    #################### Update pumphistory at very begining ##################
-    if num_data-1==0:
-      if  'duration' in loaded_suggested_data.keys():
-      
->>>>>>> b7fe632ea6efa47cfc1210b332e29d34e32e4582
         with open("monitor/pumphistory.json") as read_pump_history:
           loaded_pump_history = json.load(read_pump_history) # read whole pump_history.json
           pump_history_0 = loaded_pump_history[0].copy()  #load first element
@@ -811,7 +675,7 @@ for _ in range(iteration_num):
           loaded_pump_history.insert(0, pump_history_1) # insert second element back to whatever we loaded from pumphistory
           loaded_pump_history.insert(0, pump_history_0) #insert first element back to whatever we loaded from pumphistory
                         
-          read_pump_history.close()
+          read_pump_history.close();
       
         with open("monitor/pumphistory.json", "w") as write_pump_history:
           json.dump(loaded_pump_history, write_pump_history, indent=4)
@@ -841,44 +705,15 @@ for _ in range(iteration_num):
             pump_history_1['timestamp'] = current_timestamp
             loaded_pump_history.insert(0, pump_history_1)
             loaded_pump_history.insert(0, pump_history_0)
-            read_pump_history.close()
+            read_pump_history.close();
         
           with open("monitor/pumphistory.json", "w") as write_pump_history:
             json.dump(loaded_pump_history, write_pump_history, indent=4)
     
 
-<<<<<<< HEAD
 #    else:
 #      if loaded_temp_basal['duration']<=0:
 #        loaded_temp_basal['duration'] = 0
-=======
-    ############################### End of Fault injection #############################
-      
-    with open("monitor/temp_basal.json", "w") as write_temp_basal:
-      json.dump(loaded_temp_basal, write_temp_basal, indent=4)    
-        
-    
-    #print(suggested_data_to_dump)
-    #write the list_suggested_data_to_dump into all_suggested.json file
-    #with open("enact/all_suggested.json", "w") as dump_suggested:
-    #  json.dump(list_suggested_data_to_dump, dump_suggested, indent=4)
-    #  dump_suggested.close()  
-
-    #if 'rate' in loaded_suggested_data.keys():
-          #update the insulin parameter input of glucosym. This insulin parameters is received from openaps(suggested.json)
-    #  algo_input_list["events"]['basal'][0]['amt'] = loaded_suggested_data['rate']
-    #  algo_input_list["events"]['basal'][0]['length'] = loaded_suggested_data['duration']
-    #  algo_input_list["events"]['basal'][0]['start'] = _*5
-    
-    
-    
-    #os.chdir("../glucosym/closed_loop_algorithm_samples")
-    
-    ####################### Write algo_input having the suggested output from openaps ##########################
-    
-    # with open("../glucosym/closed_loop_algorithm_samples/algo_input.json", "w") as write_algo_input:
-    #   json.dump(loaded_algo_input_copy, write_algo_input, indent=4)
->>>>>>> b7fe632ea6efa47cfc1210b332e29d34e32e4582
     
     read_temp_basal.close()
   
@@ -914,7 +749,7 @@ for _ in range(iteration_num):
     json.dump(loaded_algo_input_copy, write_algo_input, indent=4)
   
   
-  call(["node", "../glucosym/closed_loop_algorithm_samples/algo_bw.js"])
+  call(["node", "../glucosym/closed_loop_algorithm_samples/algo_bw.js"]);
   
     
 ##hazardfile.close()
@@ -923,4 +758,18 @@ print("\n ########################################")
 print("Fault injected: ", fault_injected)
 print("Fault Occurrence:", unsafe_action_occurance, " times")
 print("########################################\n")
-
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+OpenAPS-Glucosym-3.9/updated_ct_script_iob_based (copy).py at master · UVA-DSA/OpenAPS-Glucosym-3.9
