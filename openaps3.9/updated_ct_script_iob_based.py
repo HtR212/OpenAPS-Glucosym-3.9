@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@HtR212 
-UVA-DSA
-/
-OpenAPS-Glucosym-3.9
-Public
-forked from HtR212/OpenAPS-Glucosym-3.9
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-OpenAPS-Glucosym-3.9/openaps3.9/updated_ct_script_iob_based (copy).py /
-@HtR212
-HtR212 for simulation with DCLP
-Latest commit d96c818 on May 22
- History
- 1 contributor
-Executable File  731 lines (530 sloc)  30.5 KB
-
 import sys
 import json
 import datetime
@@ -758,18 +728,3 @@ print("\n ########################################")
 print("Fault injected: ", fault_injected)
 print("Fault Occurrence:", unsafe_action_occurance, " times")
 print("########################################\n")
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-OpenAPS-Glucosym-3.9/updated_ct_script_iob_based (copy).py at master · UVA-DSA/OpenAPS-Glucosym-3.9
