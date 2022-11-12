@@ -1,5 +1,5 @@
 {
-    "rate": 0,
-    "duration": 100,
+    "rate": 0.95,
+    "duration": 30,
     "temp": "absolute"
 }
