@@ -116,7 +116,7 @@ Next, change the initial bg of the selected patient on the glucosym server and r
 ```sh
 (venv)$ python updated_ct_script_iob_based.py [number of iterations]  
 ```
-* Note: Changing the patient insulin snesitivity stored in ./openaps3.9/settings/insulin_sensitivities.json will affect the simulation result. You may want to change it if for simulation on real datasets.
+* Note: Changing the patient *insulin_sensitivities*, *bg_targets*, or *basal_profile* files stored under ./openaps3.9/settings/ will affect the simulation result. You may want to change it if for simulation on real datasets.
 
 ### Collecting output data
 Run the following command:
